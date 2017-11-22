@@ -1,30 +1,29 @@
-
-
-def findCircleNum(M):
-    cnt = 0
-    N = len(M)
-    vset = set()
+def findCircleNum(students):
+    total_circles = 0
+    len_students = len(students)
+    visited_set = set()
 
     def dfs(n):
-        for x in range(N):
-            print(M[n][x])
-            if M[n][x] == 'Y' and x not in vset:
-                print('if true')
-                vset.add(x)
+        for x in range(len_students):
+            if students[n][x] == 'Y' and x not in visited_set:
+                visited_set.add(x)
                 dfs(x)
 
-    for x in range(N):
-        if x not in vset:
-            cnt += 1
+    for x in range(len_students):
+        if x not in visited_set:
+            total_circles += 1
             dfs(x)
-    return cnt
+    return total_circles
 
-M = ['YYNNN', 'YYYNN', 'NYYNN', 'NNNYY', 'NNNYY']
+
+# On hackerRank site need to use sys.stdin to build array:
+# import sys
+# students = []
+# for line in sys.stdin:
+#     students.append(line)
+# M = students[1:]
+
+# uncomment differnt M's for different test cases
+# M = ['YYNNN', 'YYYNN', 'NYYNN', 'NNNYY', 'NNNYY']
 M = ['YYNNNN', 'YYYNNN', 'NYYNNN', 'NNNYYN', 'NNNYYN', 'NNNNNY']
-# M = [[1, 1, 0, 0, 0], [1, 1, 1, 0, 0], [0, 1, 1, 0, 0], [0, 0, 0, 1, 1], [0, 0, 0, 1, 1]]
-
 print(findCircleNum(M))
-
-# students = ['4', 'YYNNN', 'YYYNN', 'NYYNN', 'NNNYY','NNNYY']
-# # students = ['5','YNNNN','NYNNN', 'NNYNN', 'NNNYN', 'NNNNY']
-# print(analyseStudents(students))
